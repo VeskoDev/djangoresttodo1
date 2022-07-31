@@ -108,17 +108,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'authentication.jwt.JWTAuthentication'
-    ],
-    'DEFAULT_PAGINATION_CLASS':"rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 3,
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'authentication.jwt.JWTAuthentication'
+#     ],
+#     'DEFAULT_PAGINATION_CLASS':"rest_framework.pagination.PageNumberPagination",
+#     "PAGE_SIZE": 3,
 
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ]
-}
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+#     ]
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
