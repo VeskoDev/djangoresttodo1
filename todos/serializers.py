@@ -24,19 +24,19 @@ class MovieSerializer(ModelSerializer):
         model = Movie
         fields = ['title', 'description', 'tags']
 
-        def _get_or_create_tags(self, tags, recipe):
-            for tag in tags:
-                tag_obj, created = Tag.objects.get_or_create(**tag)
-                recipe.tags.add(tag_obj)
+    def _get_or_create_tags(self, tags, movie):
+        for tag in tags:
+            tag_obj, created = Tag.objects.get_or_create(**tag)
+            movie.tags.add(tag_obj)
 
-        def create(self, validated_data):
+    def create(self, validated_data):
             tags = validated_data.pop('tags', [])
-            recipe = Movie.objects.create(**validated_data)
-            self._get_or_create_tags(tags, recipe)
+            movie = Movie.objects.create(**validated_data)
+            self._get_or_create_tags(tags, movie)
             
-            return recipe
+            return movie
         
-        def update(self, instance, validated_data):
+    def update(self, instance, validated_data):
             """Update recipe"""
             tags = validated_data.pop('tags', None)
             if tags is not None:
