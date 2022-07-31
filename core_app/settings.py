@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "django-insecure-$ts!3sf^7yv%)=(lfidl!b%z=)!y9k*%=-ra+emvh#*t3q_x(l"
+#os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -112,7 +113,11 @@ REST_FRAMEWORK = {
         'authentication.jwt.JWTAuthentication'
     ],
     'DEFAULT_PAGINATION_CLASS':"rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 3
+    "PAGE_SIZE": 3,
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ]
 }
 
 # Internationalization

@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate
 
 class AuthUserAPIView(GenericAPIView):
 
-    permission_classes =(permissions.IsAuthenticated,)
+    permission_classes =(permissions.IsAuthenticatedOrReadOnly,)
     def get (self, request):
         user = request.user
 
