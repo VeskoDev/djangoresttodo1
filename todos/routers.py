@@ -1,10 +1,10 @@
 from rest_framework.routers import DefaultRouter  
 
-from .views import MovieViewSet
+from .views import MovieViewSet, TagViewSet
 
 router = DefaultRouter()
 router.register('movie', MovieViewSet, basename='prodcuts')
+router.register('tags', TagViewSet, basename='tags')
 
 
-print(router.urls)
 urlpatterns = router.urls

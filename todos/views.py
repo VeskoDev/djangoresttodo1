@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from todos.models import Todo, Movie
-from rest_framework import permissions, filters, viewsets
-from todos.serializers import TodoSerializer, MovieSerializer
+from todos.models import Todo, Movie, Tag
+from rest_framework import permissions, filters, viewsets, mixins
+from todos.serializers import TodoSerializer, MovieSerializer, TagSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -57,14 +57,13 @@ class TodoDetailAPIView(RetrieveUpdateDestroyAPIView):
 
 
 class MovieViewSet(viewsets.ModelViewSet):
-    """
-    get -> list -> QuerySet 
-    get -> retrieve -> Product Instance Detail View 
-    post -> create -> New Instance 
-    put -> Update 
-    path -> partial Update 
-    delete -> destroy 
-    """
+
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
     lookup_field = 'pk'
+
+
+class TagViewSet(mixins.CreateModelMixin,mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+    """Maange tags in the datbase"""
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
