@@ -67,3 +67,4 @@ class TagViewSet(mixins.CreateModelMixin,mixins.DestroyModelMixin, mixins.Update
     """Maange tags in the datbase"""
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
+
