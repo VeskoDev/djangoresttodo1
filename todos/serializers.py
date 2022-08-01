@@ -39,7 +39,7 @@ class ParticipantSerializer(ModelSerializer):
 class MovieSerializer(ModelSerializer):
 
     tags = TagSerializer(many = True, required = False)
-    participant = ParticipantSerializer(many = True)
+    participant = ParticipantSerializer(many = True, required = False)
     class Meta:
         model = Movie
         fields = ['title', 'description', 'tags', 'participant']
