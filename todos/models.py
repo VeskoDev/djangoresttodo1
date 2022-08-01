@@ -17,6 +17,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     tags = models.ManyToManyField('Tag', null=True)
+    participant = models.ManyToManyField('Participant', null=True)
 
     def __str__(self):
         return self.title

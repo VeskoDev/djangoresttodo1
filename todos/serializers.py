@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from todos.models import Todo, Movie, Tag, Participant
+from todos.models import Todo, Movie, Tag, Participant, Title
 
 
 class TodoSerializer(ModelSerializer):
@@ -19,9 +19,27 @@ class TagSerializer(ModelSerializer):
 
 
 
+class TitleSerializer(ModelSerializer):
+    
+     class Meta:
+        model = Title
+        fields = ['id', 'name']
+        read_only_field = ['id']
+
+
+class ParticipantSerializer(ModelSerializer):
+    
+     title = TitleSerializer(many = True, required = False)
+     class Meta:
+        model = Participant
+        fields = ['id', 'name', 'last_name', 'date_of_birth', 'description', 'title']
+        read_only_field = ['id']
+
+
 class MovieSerializer(ModelSerializer):
 
-    tags = TagSerializer(many = True, required = True)
+    tags = TagSerializer(many = True, required = False)
+    participant = ParticipantSerializer(many = True)
     class Meta:
         model = Movie
         fields = ['title', 'description', 'tags']
@@ -52,12 +70,5 @@ class MovieSerializer(ModelSerializer):
             return instance 
 
 
-
-class ParticipantSerializer(ModelSerializer):
-    
-     class Meta:
-        model = Participant
-        fields = ['id', 'name', 'last_name', 'date_of_birth', 'description', 'title']
-        read_only_field = ['id']
 
         
