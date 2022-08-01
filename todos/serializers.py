@@ -42,7 +42,7 @@ class MovieSerializer(ModelSerializer):
     participant = ParticipantSerializer(many = True)
     class Meta:
         model = Movie
-        fields = ['title', 'description', 'tags']
+        fields = ['title', 'description', 'tags', 'participant']
 
     def _get_or_create_tags(self, tags, movie):
         for tag in tags:
