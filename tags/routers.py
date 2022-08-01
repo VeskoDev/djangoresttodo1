@@ -1,9 +1,9 @@
-from rest_framework.routers import DefaultRouter  
+# from rest_framework.routers import DefaultRouter  
 
-from .views import TagViewSet
+# from .views import TagViewSet
 
-router = DefaultRouter()
-router.register('tags', TagViewSet, basename='tags')
+# router = DefaultRouter()
+# router.register('tags', TagViewSet, basename='tags')
 
 
-urlpatterns = router.urls
+# urlpatterns = router.urls
