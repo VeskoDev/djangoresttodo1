@@ -62,9 +62,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core_app.urls'
 CORS_URLS_REGEX = r"^/api/.*"
-CORS_ALLOWED_ORIGINS = [
-    'https://imdb-clone-developerslab-project.netlify.app/'
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'https://imdb-clone-developerslab-project.netlify.app/'
+# ]
 
 TEMPLATES = [
     {
