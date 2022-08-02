@@ -13,23 +13,24 @@ class Todo(TrackingModel):
         return self.title
 
 
+class Tag(models.Model):
+    
+    name = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.name
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    tags = models.ManyToManyField('Tag', null=True)
-    participant = models.ManyToManyField('Participant', null=True)
+    tag = models.ManyToManyField('Tag')
+    participants = models.ManyToManyField('Participant')
 
     def __str__(self):
         return self.title
 
 
-
-class Tag(models.Model):
-
-    name = models.CharField(max_length=255)
-    
-    def __str__(self):
-        return self.name
 
     
 
@@ -37,9 +38,9 @@ class Participant(models.Model):
     
     name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    date_of_birth = models.DateField()
+
     description = models.TextField(blank=True)
-    title = models.ManyToManyField('Tag', null=True)
+    titles = models.ForeignKey('Title', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -48,7 +49,34 @@ class Participant(models.Model):
 class Title(models.Model):
     
     name = models.CharField(max_length=255)
+    participants = models.ForeignKey('Participant', on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
     
+
+
+# """New part of code"""
+
+# class Paradigm(models.Model):
+#     name = models.CharField(max_length=255)
+
+#     def __str__(self):
+#         return self.name
+    
+
+# class Language(models.Model):
+#     name = models.CharField(max_length=255)
+#     paradigm = models.ForeignKey('Paradigm', on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return self.name
+
+
+
+# class Programmer(models.Model):
+#     name = models.CharField(max_length=255)
+#     language = models.ManyToManyField('Language')
+
+#     def __str__(self):
+#         return self.name

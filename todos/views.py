@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from todos.models import Todo, Movie, Tag, Participant, Title 
+from todos.models import Todo, Movie, Tag, Participant, Title
+#Language, Programmer, Paradigm
 from rest_framework import permissions, filters, viewsets, mixins
 from todos.serializers import TodoSerializer, MovieSerializer, TagSerializer, ParticipantSerializer, TitleSerializer
+#LanguageSerializer, ProgrammerSerializer, ParadigmSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
+
 
 """Handluje get i post metodu istovremeno za razliku ovog sto imamo dolje"""
 class TodosAPIView(ListCreateAPIView):
@@ -60,22 +63,39 @@ class MovieViewSet(viewsets.ModelViewSet):
 
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    lookup_field = 'pk'
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['title', 'description','participants']
 
 
-class TagViewSet(mixins.CreateModelMixin,mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+class TagViewSet(viewsets.ModelViewSet):
     """Maange tags in the datbase"""
-    serializer_class = TagSerializer
     queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
 
-class ParticipantViewSet(mixins.CreateModelMixin,mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+class ParticipantViewSet(viewsets.ModelViewSet):
     """Maange tags in the datbase"""
     serializer_class = ParticipantSerializer
     queryset = Participant.objects.all()
 
 
-class TitleViewSet(mixins.CreateModelMixin,mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+class TitleViewSet(viewsets.ModelViewSet):
     """Maange tags in the datbase"""
-    serializer_class = TitleSerializer
     queryset = Title.objects.all()
+    serializer_class = TitleSerializer
+
+
+
+# class LanguageView(viewsets.ModelViewSet):
+#     queryset = Language.objects.all()
+#     serializer_class = LanguageSerializer
+
+
+# class ParadigmView(viewsets.ModelViewSet):
+#     queryset = Paradigm.objects.all()
+#     serializer_class = ParadigmSerializer
+
+
+# class ProgrammerView(viewsets.ModelViewSet):
+#     queryset = Programmer.objects.all()
+#     serializer_class = ProgrammerSerializer

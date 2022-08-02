@@ -25,9 +25,9 @@ SECRET_KEY = "django-insecure-$ts!3sf^7yv%)=(lfidl!b%z=)!y9k*%=-ra+emvh#*t3q_x(l
 #os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "authentication.User"
 
@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
+    #'corsheaders',
+    'django_filters',
     'rest_framework',
     'drf_yasg',
     'authentication',
-    'django_filters',
     'todos'
 ]
 
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    #'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -61,10 +61,10 @@ MIDDLEWARE = [
 ] 
 
 ROOT_URLCONF = 'core_app.urls'
-CORS_URLS_REGEX = r"^/api/.*"
-# CORS_ALLOWED_ORIGINS = [
-#     'https://imdb-clone-developerslab-project.netlify.app/'
-# ]
+# CORS_URLS_REGEX = r"^/api/.*"
+# # CORS_ALLOWED_ORIGINS = [
+# #     'https://imdb-clone-developerslab-project.netlify.app/'
+# # ]
 
 TEMPLATES = [
     {

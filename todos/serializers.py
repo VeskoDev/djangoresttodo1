@@ -1,5 +1,7 @@
 from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from todos.models import Todo, Movie, Tag, Participant, Title
+#Programmer, Language, Paradigm
 
 
 class TodoSerializer(ModelSerializer):
@@ -10,7 +12,7 @@ class TodoSerializer(ModelSerializer):
 
 
 
-class TagSerializer(ModelSerializer):
+class TagSerializer(serializers.HyperlinkedModelSerializer):
     
      class Meta:
         model = Tag
@@ -19,56 +21,48 @@ class TagSerializer(ModelSerializer):
 
 
 
-class TitleSerializer(ModelSerializer):
+class TitleSerializer(serializers.HyperlinkedModelSerializer):
     
      class Meta:
         model = Title
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'participants']
         read_only_field = ['id']
 
 
-class ParticipantSerializer(ModelSerializer):
+class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
     
-     title = TitleSerializer(many = True, required = False)
+
      class Meta:
         model = Participant
-        fields = ['id', 'name', 'last_name', 'date_of_birth', 'description', 'title']
+        fields = ['id', 'name', 'last_name', 'description', 'titles']
         read_only_field = ['id']
 
 
-class MovieSerializer(ModelSerializer):
+# class LanguageSerializer(serializers.HyperlinkedModelSerializer):
 
-    tags = TagSerializer(many = True, required = False)
-    participant = ParticipantSerializer(many = True, required = False)
+#     class Meta:
+#         model = Language
+#         fields = ('id', 'url', 'name', 'paradigm')
+
+
+
+# class ParadigmSerializer(serializers.HyperlinkedModelSerializer):
+
+#     class Meta:
+#         model = Paradigm
+#         fields = ('id', 'name')
+
+# class ProgrammerSerializer(serializers.HyperlinkedModelSerializer):
+    
+#     class Meta:
+#         model = Programmer
+#         fields = ('id','name', 'language')
+
+
+class MovieSerializer(serializers.HyperlinkedModelSerializer):
+    
     class Meta:
         model = Movie
-        fields = ['title', 'description', 'tags', 'participant']
+        fields = ['title', 'description',  'participants', 'tag']
+ 
 
-    def _get_or_create_tags(self, tags, movie):
-        for tag in tags:
-            tag_obj, created = Tag.objects.get_or_create(**tag)
-            movie.tags.add(tag_obj)
-
-    def create(self, validated_data):
-            tags = validated_data.pop('tags', [])
-            movie = Movie.objects.create(**validated_data)
-            self._get_or_create_tags(tags, movie)
-            
-            return movie
-        
-    def update(self, instance, validated_data):
-            """Update recipe"""
-            tags = validated_data.pop('tags', None)
-            if tags is not None:
-                instance.tags.clear()
-                self._get_or_create_tags(tags, instance)
-
-            for attr, value in validated_data.items():
-                setattr(instance, attr, value)
-                
-            instance.save()
-            return instance 
-
-
-
-        
