@@ -16,6 +16,7 @@ class Todo(TrackingModel):
 class Tag(models.Model):
     
     name = models.CharField(max_length=255)
+    #image = models.ImageField(upload_to="Images/", default="Images/None/no-img.jpg")
     
     def __str__(self):
         return self.name
