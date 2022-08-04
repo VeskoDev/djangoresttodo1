@@ -23,7 +23,7 @@ class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
     
      class Meta:
         model = Participant
-        fields = ['name', 'last_name', ' date_of_birth', 'description ', 'image_of_participant']
+        fields = ['name', 'last_name', 'date_of_birth', 'description', 'image_of_participant']
         read_only_field = ['id']
 
 

@@ -51,11 +51,11 @@ class Movie(models.Model):
 
 class Participant(models.Model):
     
-    name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    date_of_birth = models.DateField(blank=True, null=True)  
-    description = models.TextField(blank=True)
-    image_of_participant = models.ImageField(null=True, blank=True)
+    name= models.CharField(max_length=255)
+    last_name= models.CharField(max_length=255)
+    date_of_birth= models.DateField(blank=True, null=True)  
+    description= models.TextField(blank=True)
+    image_of_participant= models.ImageField(null=True, blank=True)
    
 
     def __str__(self):
