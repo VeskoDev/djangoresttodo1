@@ -3,14 +3,14 @@ from helpers.models import TrackingModel
 from authentication.models import User 
 
 
-class Todo(TrackingModel):
-    title = models.CharField(max_length=255)
-    description = models.TextField(default="Vesko")
-    is_complete = models.BooleanField(default=False)
-    owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
+# class Todo(TrackingModel):
+#     title = models.CharField(max_length=255)
+#     description = models.TextField(default="Vesko")
+#     is_complete = models.BooleanField(default=False)
+#     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.title
+#     def __str__(self):
+#         return self.title
 
 
 
@@ -73,27 +73,3 @@ class Title(models.Model):
     
 
 
-# """New part of code"""
-
-# class Paradigm(models.Model):
-#     name = models.CharField(max_length=255)
-
-#     def __str__(self):
-#         return self.name
-    
-
-# class Language(models.Model):
-#     name = models.CharField(max_length=255)
-#     paradigm = models.ForeignKey('Paradigm', on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return self.name
-
-
-
-# class Programmer(models.Model):
-#     name = models.CharField(max_length=255)
-#     language = models.ManyToManyField('Language')
-
-#     def __str__(self):
-#         return self.name

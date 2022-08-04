@@ -1,13 +1,13 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from todos.models import Todo, Movie, Participant, Title, Slike, PrikazSlika
+from todos.models import  Movie, Participant, Title, Slike, PrikazSlika
 
 
-class TodoSerializer(ModelSerializer):
+# class TodoSerializer(ModelSerializer):
     
-    class Meta:
-        model=Todo
-        fields = ('id','title', 'description', 'is_complete',)
+#     class Meta:
+#         model=Todo
+#         fields = ('id','title', 'description', 'is_complete',)
 
 
 
