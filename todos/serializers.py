@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from todos.models import Todo, Movie, Tag, Participant, Title
-#Programmer, Language, Paradigm
+from todos.models import Todo, Movie, Participant, Title, Slike, PrikazSlika
+#Programmer, Language, Paradigm, Tag, TagImage
 
 
 class TodoSerializer(ModelSerializer):
@@ -11,13 +11,28 @@ class TodoSerializer(ModelSerializer):
         fields = ('id','title', 'description', 'is_complete',)
 
 
-
-class TagSerializer(serializers.HyperlinkedModelSerializer):
+# class TagImageSerializer(serializers.ModelSerializer):
     
-     class Meta:
-        model = Tag
-        fields = ['id', 'name']
-        read_only_field = ['id']
+#     class Meta:
+#         model = TagImage
+#         fields = '__all__'
+
+# class TagSerializer(serializers.HyperlinkedModelSerializer):
+    
+#      class Meta:
+#         model = Tag
+#         fields = '__all__'
+
+
+
+        #read_only_field = ['id']
+    
+    #  def create(self, validated_data):
+    #         images_data = validated_data.pop('images')
+    #         tag = Tag.objects.create(**validated_data)
+    #         for image_data in images_data:
+    #             TagImage.objects.create(tag=tag, **image_data)
+    #         return tag
 
 
 
@@ -25,16 +40,15 @@ class TitleSerializer(serializers.HyperlinkedModelSerializer):
     
      class Meta:
         model = Title
-        fields = ['id', 'name', 'participants']
+        fields = ['id', 'name']
         read_only_field = ['id']
 
 
 class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
     
-
      class Meta:
         model = Participant
-        fields = ['id', 'name', 'last_name', 'description', 'titles']
+        fields = '__all__'
         read_only_field = ['id']
 
 
@@ -63,6 +77,19 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Movie
-        fields = ['title', 'description',  'participants', 'tag']
+        fields = ['title', 'description',  'participants']
  
 
+class PrikazSlikaSerializer(serializers.HyperlinkedModelSerializer):
+    
+    class Meta:
+        model = PrikazSlika
+        fields = '__all__'
+class SlikeSerializer(serializers.HyperlinkedModelSerializer):
+
+    albums = PrikazSlikaSerializer(serializers.ModelSerializer, many=True, required=False)
+    class Meta:
+        model = Slike
+        fields = ['name', 'albums']
+
+   

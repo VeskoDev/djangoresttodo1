@@ -13,19 +13,33 @@ class Todo(TrackingModel):
         return self.title
 
 
-class Tag(models.Model):
+
+class Slike(models.Model):
     
-    name = models.CharField(max_length=255)
-    #image = models.ImageField(upload_to="Images/", default="Images/None/no-img.jpg")
-    
+    name = models.CharField(max_length=255, null=True, blank=True)
+
     def __str__(self):
         return self.name
+
+
+class PrikazSlika(models.Model):
+    
+    #album = models.ForeignKey('Slike', related_name='albums', null=True, blank=True, on_delete=models.CASCADE)
+    ime = models.CharField(max_length=255)
+    slika = models.ImageField(null=True, blank=True)
+
+       
+
+
+    def __str__(self):
+        return self.ime + self.slika
+
+
 
 
 class Movie(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    tag = models.ManyToManyField('Tag')
     participants = models.ManyToManyField('Participant')
 
     def __str__(self):
@@ -39,9 +53,11 @@ class Participant(models.Model):
     
     name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-
+    date_of_birth = models.DateField(blank=True, null=True)  
     description = models.TextField(blank=True)
-    titles = models.ForeignKey('Title', on_delete=models.CASCADE)
+    image_of_participant = models.ImageField(null=True, blank=True)
+   
+   #TODO da ga vezes sa filmom nekako
 
     def __str__(self):
         return self.name
@@ -50,7 +66,7 @@ class Participant(models.Model):
 class Title(models.Model):
     
     name = models.CharField(max_length=255)
-    participants = models.ForeignKey('Participant', on_delete=models.CASCADE)
+    #participants = models.ForeignKey('Participant', on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name

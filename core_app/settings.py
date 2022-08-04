@@ -150,5 +150,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 django_heroku.settings(locals())
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+MEDIA_ROOT = 'static/images/'
 CORS_ALLOW_ALL_ORIGINS = True

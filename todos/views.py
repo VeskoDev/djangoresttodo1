@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from todos.models import Todo, Movie, Tag, Participant, Title
+from todos.models import Todo, Movie, Participant, Title, Slike, PrikazSlika
 #Language, Programmer, Paradigm
 from rest_framework import permissions, filters, viewsets, mixins
-from todos.serializers import TodoSerializer, MovieSerializer, TagSerializer, ParticipantSerializer, TitleSerializer
+from todos.serializers import TodoSerializer, MovieSerializer, ParticipantSerializer, TitleSerializer, PrikazSlikaSerializer, SlikeSerializer
 #LanguageSerializer, ProgrammerSerializer, ParadigmSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
@@ -67,10 +67,10 @@ class MovieViewSet(viewsets.ModelViewSet):
     filterset_fields = ['title', 'description','participants']
 
 
-class TagViewSet(viewsets.ModelViewSet):
-    """Maange tags in the datbase"""
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+# class TagViewSet(viewsets.ModelViewSet):
+#     """Maange tags in the datbase"""
+#     queryset = Tag.objects.all()
+#     serializer_class = TagSerializer
 
 
 class ParticipantViewSet(viewsets.ModelViewSet):
@@ -99,3 +99,12 @@ class TitleViewSet(viewsets.ModelViewSet):
 # class ProgrammerView(viewsets.ModelViewSet):
 #     queryset = Programmer.objects.all()
 #     serializer_class = ProgrammerSerializer
+
+
+class SlikeView(viewsets.ModelViewSet):
+    queryset = Slike.objects.all()
+    serializer_class = SlikeSerializer
+
+class PrikazSlikaView(viewsets.ModelViewSet):
+    queryset = PrikazSlika.objects.all()
+    serializer_class = PrikazSlikaSerializer
