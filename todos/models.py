@@ -57,7 +57,6 @@ class Participant(models.Model):
     description = models.TextField(blank=True)
     image_of_participant = models.ImageField(null=True, blank=True)
    
-   #TODO da ga vezes sa filmom nekako
 
     def __str__(self):
         return self.name

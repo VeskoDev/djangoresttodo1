@@ -53,8 +53,8 @@ class MovieViewSet(viewsets.ModelViewSet):
 
 class ParticipantViewSet(viewsets.ModelViewSet):
    
-    serializer_class = ParticipantSerializer
     queryset = Participant.objects.all()
+    serializer_class = ParticipantSerializer
 
 
 class TitleViewSet(viewsets.ModelViewSet):
