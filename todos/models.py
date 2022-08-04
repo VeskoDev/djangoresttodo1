@@ -40,6 +40,7 @@ class PrikazSlika(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
+    description2 = models.TextField(blank=True)
     participants = models.ManyToManyField('Participant')
 
     def __str__(self):
@@ -50,7 +51,6 @@ class Movie(models.Model):
     
 
 class Participant(models.Model):
-    
     name= models.CharField(max_length=255)
     last_name= models.CharField(max_length=255)
     date_of_birth= models.DateField(blank=True, null=True)  
