@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from todos.models import  Movie, Participant, Title, Slike, PrikazSlika
+from todos.models import  Movie, Participant, Title, Slike, PrikazSlika, Tag
 
 
 # class TodoSerializer(ModelSerializer):
@@ -50,4 +50,10 @@ class SlikeSerializer(serializers.HyperlinkedModelSerializer):
         model = Slike
         fields = ['name', 'albums']
 
+
+class TagSerializer(serializers.HyperlinkedModelSerializer):
+    
+    class Meta:
+        model = Tag
+        fields = '__all__'
    

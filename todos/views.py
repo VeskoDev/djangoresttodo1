@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from todos.models import  Movie, Participant, Title, Slike, PrikazSlika
+from todos.models import  Movie, Participant, Title, Slike, PrikazSlika, Tag
 
 from rest_framework import permissions, filters, viewsets
-from todos.serializers import  MovieSerializer, ParticipantSerializer, TitleSerializer, PrikazSlikaSerializer, SlikeSerializer
+from todos.serializers import  MovieSerializer, ParticipantSerializer, TitleSerializer, PrikazSlikaSerializer, SlikeSerializer, TagSerializer
 #TodoSerializer
 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -71,3 +71,7 @@ class SlikeView(viewsets.ModelViewSet):
 class PrikazSlikaView(viewsets.ModelViewSet):
     queryset = PrikazSlika.objects.all()
     serializer_class = PrikazSlikaSerializer
+
+class TagView(viewsets.ModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer

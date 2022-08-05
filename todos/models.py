@@ -42,6 +42,14 @@ class Participant(models.Model):
 
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+    Movie = models.ManyToManyField('Movie', blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Movie(models.Model):
 
     title = models.CharField(max_length=255)
@@ -52,7 +60,7 @@ class Movie(models.Model):
     actors = models.ManyToManyField('Participant', through= Participant.Movie.through , null=True, blank=True)
     date_of_release = models.DateTimeField(null=True, blank=True)
     duration = models.IntegerField(null=True, blank=True)
-    tag = models.CharField(max_length=255)
+    Tag = models.ManyToManyField('Tag', through=Tag.Movie.through , null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -69,7 +77,3 @@ class Title(models.Model):
     def __str__(self):
         return self.name
     
-
-class Tag(models.Model):
-    name = models.CharField(max_length=255)
-

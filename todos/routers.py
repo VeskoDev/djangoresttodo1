@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter  
 
-from .views import MovieViewSet, SlikeView, TitleViewSet, ParticipantViewSet, PrikazSlikaView #TagViewSet
+from .views import MovieViewSet, SlikeView, TitleViewSet, ParticipantViewSet, PrikazSlikaView, TagView #TagViewSet
 #LanguageView, ParadigmView, ProgrammerView
 
 router = DefaultRouter()
@@ -10,6 +10,7 @@ router.register('participant', ParticipantViewSet)
 router.register('title', TitleViewSet)
 router.register('slike', SlikeView)
 router.register('prikazslike', PrikazSlikaView)
+router.register('tags', TagView)
 
 
 # router.register('languages', LanguageView)
