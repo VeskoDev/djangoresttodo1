@@ -47,7 +47,7 @@ class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['title', 'description','participants']
+    filterset_fields = ['title', 'description']
 
 
 

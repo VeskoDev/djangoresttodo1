@@ -34,7 +34,8 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Movie
-        fields = ['title', 'description',  'participants']
+        fields = '__all__'
+        read_only_field = ['id']
  
 
 class PrikazSlikaSerializer(serializers.HyperlinkedModelSerializer):

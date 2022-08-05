@@ -3,14 +3,6 @@ from helpers.models import TrackingModel
 from authentication.models import User 
 
 
-# class Todo(TrackingModel):
-#     title = models.CharField(max_length=255)
-#     description = models.TextField(default="Vesko")
-#     is_complete = models.BooleanField(default=False)
-#     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return self.title
 
 
 
@@ -34,32 +26,39 @@ class PrikazSlika(models.Model):
     def __str__(self):
         return self.ime + self.slika
 
+class Participant(models.Model):
+    
+    name= models.CharField(max_length=255)
+    last_name= models.CharField(max_length=255)
+    date_of_birth= models.DateField(blank=True, null=True)  
+    description= models.TextField(blank=True, null=True)
+    image_of_participant= models.ImageField(null=True, blank=True)
+    Movie = models.ManyToManyField('Movie',blank=True)
+    
+    
+
+    def __str__(self):
+        return self.name
 
 
 
 class Movie(models.Model):
+
     title = models.CharField(max_length=255)
+    featured_image = models.ImageField(null=True, blank=True)
+    image_of_movie = models.ImageField(null=True, blank=True)
+    video_of_movie = models.FileField(null=True, blank=True)
     description = models.TextField(blank=True)
-    description2 = models.TextField(blank=True)
-    participants = models.ManyToManyField('Participant')
+    actors = models.ManyToManyField('Participant', through= Participant.Movie.through , null=True, blank=True)
+    date_of_release = models.DateTimeField(null=True, blank=True)
+    duration = models.IntegerField(null=True, blank=True)
+    tag = models.CharField(max_length=255)
 
     def __str__(self):
         return self.title
 
 
 
-    
-
-class Participant(models.Model):
-    name= models.CharField(max_length=255)
-    last_name= models.CharField(max_length=255)
-    date_of_birth= models.DateField(blank=True, null=True)  
-    description= models.TextField(blank=True)
-    image_of_participant= models.ImageField(null=True, blank=True)
-   
-
-    def __str__(self):
-        return self.name
 
 
 class Title(models.Model):
@@ -71,4 +70,6 @@ class Title(models.Model):
         return self.name
     
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
 
