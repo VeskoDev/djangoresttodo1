@@ -29,7 +29,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ["*"]
 
-AUTH_USER_MODEL = "authentication.User"
+# AUTH_USER_MODEL = "authentication.User"
 
 # Application definition
 
@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
     'corsheaders',
     'django_filters',
     'rest_framework',
     'drf_yasg',
-    'authentication',
     'todos',
 ]
 
@@ -95,6 +95,8 @@ DATABASES = {
     }
 }
 
+
+AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -157,5 +159,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+
+
 MEDIA_ROOT = 'static/images/'
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
